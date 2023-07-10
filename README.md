@@ -30,9 +30,9 @@ sudo apt install shc
 ```bash
 bash ./build.sh
 ```
-The script will generate a package named easy-migrate-<version>-<arch>.deb.
+The script will generate a package named easy-migrate-\<version>-\<arch>.deb.
 
-5. To install the Easy Migrate Tool, execute the following command, replacing <version> and <arch> with the appropriate values:
+5. To install the Easy Migrate Tool, execute the following command, replacing \<version> and \<arch> with the appropriate values:
 ```bash
 dpkg -i easy-migrate-<version>-<arch>.deb
 ```
