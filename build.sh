@@ -17,9 +17,9 @@ cp src/easy-migrate.sh src/easy-migrate.sh.fix
 sed -i 's/\.\/easy-migrate-check\.sh/easy-migrate-check/g' src/easy-migrate.sh.fix
 
 
-# Compile the scripts
-shc -f src/easy-migrate.sh.fix -o package/usr/bin/easy-migrate
-shc -f src/easy-migrate-check.sh -o package/usr/bin/easy-migrate-check
+# Copy the scripts
+cp src/easy-migrate.sh.fix package/usr/bin/easy-migrate
+cp src/easy-migrate-check.sh package/usr/bin/easy-migrate-check
 
 # Create the control file
 echo "Package: easy-migrate" > package/DEBIAN/control
@@ -33,7 +33,7 @@ chmod +x packages/DEBIAN/control
 # Build the package
 dpkg-deb --build package
 
-rm src/*.x.c
+
 rm src/*.fix
 rm -rf package
 
