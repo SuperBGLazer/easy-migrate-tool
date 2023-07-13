@@ -38,6 +38,6 @@ rm src/*.fix
 rm -rf package
 
 # Rename the package with the version number and architecture
-mv package.deb easy-migrate-$version-$architecture.deb
+mv package.deb easy-migrate_${version}_${architecture}.deb
 
 exit 0
