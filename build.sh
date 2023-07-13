@@ -5,7 +5,6 @@ version="0.0.1"
 maintainer="Breyon Gunn"
 
 # Get the architecture of the system
-architecture=$(dpkg --print-architecture)
 echo "Architecture: $architecture"
 
 
@@ -24,7 +23,7 @@ cp src/easy-migrate-check.sh package/usr/bin/easy-migrate-check
 # Create the control file
 echo "Package: easy-migrate" > package/DEBIAN/control
 echo "Version: $version" >> package/DEBIAN/control
-echo "Architecture: $architecture" >> package/DEBIAN/control
+echo "Architecture: all" >> package/DEBIAN/control
 echo "Maintainer: $maintainer" >> package/DEBIAN/control
 echo "Description: $description" >> package/DEBIAN/control
 
@@ -38,6 +37,6 @@ rm src/*.fix
 rm -rf package
 
 # Rename the package with the version number and architecture
-mv package.deb easy-migrate_${version}_${architecture}.deb
+mv package.deb easy-migrate_${version}_all.deb
 
 exit 0
