@@ -20,21 +20,18 @@ Before running the tool, make sure you have the following prerequisites:
 To install the Easy Migrate Tool, follow these steps:
 
 1. Clone or download this repository to your local machine.
-2. Install the required package `shc` by running the following command:
-```bash
-sudo apt install shc
-```
-3. Navigate to the project directory.
 
-4.Run the build.sh script using the following command:
+2. Navigate to the project directory.
+
+3.Run the build.sh script using the following command:
 ```bash
 bash ./build.sh
 ```
 The script will generate a package named easy-migrate-\<version>-\<arch>.deb.
 
-5. To install the Easy Migrate Tool, execute the following command, replacing \<version> and \<arch> with the appropriate values:
+5. To install the Easy Migrate Tool, execute the following command, replacing \<version> with the appropriate value:
 ```bash
-dpkg -i easy-migrate-<version>-<arch>.deb
+dpkg -i easy-migrate-<version>-all.deb
 ```
 
 ## Usage
