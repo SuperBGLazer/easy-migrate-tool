@@ -10,7 +10,7 @@ The Easy Migrate Tool for MySQL is a command-line utility that simplifies the pr
 - Stores all script hashes in a file called `hashes.csv`.
 - After each file is migrated to the server, the current version is kept in a file called `currentVersion.txt`.
 
-## Installation
+## Installation (Build From Source)
 
 Before running the tool, make sure you have the following prerequisites:
 
@@ -38,7 +38,7 @@ dpkg -i easy-migrate-<version>-all.deb
 
 To run the Easy Migrate Tool, use the following command:
 ```bash
-easy-migrate -u <username> -p <password> -h <ip>
+easy-migrate -u <username> -p <password> -h <ip> -d
 ```
 
 
@@ -47,8 +47,8 @@ The tool supports the following flags:
 - `-u` or `--username`: The MySQL username.
 - `-p` or `--password`: The MySQL password.
 - `-h` or `--ip`: The MySQL server IP address.
+- `-d` or `--development-only`: Optional flag to enable development-only mode. When this flag is provided, any script containing the `--development-only` comment in its first line will be executed during the migration process.
 
-**Note:** All flags are required.
 
 ## Scripts Directory
 
@@ -63,6 +63,24 @@ The Easy Migrate Tool stores the hashes of all scripts in a file called `hashes.
 ## Current Version
 
 After each successful migration, the current version is stored in a file called `currentVersion.txt`.
+
+## Development-only Mode
+The development-only mode allows you to execute specific scripts during the migration process that are intended for development purposes. By using the `-d` flag, any script that includes the `--development-only` comment in its first line will be executed. In addition, scripts without that flag will also be executed. This can be useful when you have scripts that contain development-specific changes or data and should only be executed in a development environment.
+
+To utilize the development-only mode, follow these steps:
+
+Ensure that the `-d` flag is included when running the easy-migrate command.
+Add the `--development-only` comment in the first line of any script that should be executed in development-only mode.
+Example script (v3.sql) with the --development-only comment:
+
+```sql
+--development-only
+-- This script contains development-specific changes
+-- Execute this only in a development environment
+
+ALTER TABLE my_table ADD COLUMN new_column INT;
+```
+Now you can use the -d flag to enable the development-only mode and execute specific scripts during the migration process in a development environment.
 
 ## License
 

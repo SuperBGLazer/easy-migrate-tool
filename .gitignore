@@ -1,5 +1,6 @@
-./scripts/*
+./src/scripts/*
 currentVersion.txt
 hashes.csv
 ./packages
 *.deb
+*.sql

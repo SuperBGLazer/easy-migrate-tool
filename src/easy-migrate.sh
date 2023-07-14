@@ -1,14 +1,16 @@
 #!/bin/bash
 
-# Get the username, password , and ip address flags for the MySQL command
-while getopts u:p: flag
+# Get the username, password, ip address, and development-only flags
+while getopts u:p:h:d flag
 do
     case "${flag}" in
         u) username=${OPTARG};;
         p) password=${OPTARG};;
         h) ip=${OPTARG};;
+        d) developmentOnly=true;;
     esac
 done
+
 
 # Check if any changes were made to the scripts directory and get the exit code
 ./easy-migrate-check.sh
@@ -20,7 +22,7 @@ if [ $exitCode -eq 1 ]; then
     exit 1
 fi
 
-# Create the currentVersion.txt chele if it doesn't exist
+# Create the currentVersion.txt file if it doesn't exist
 if [ ! -f currentVersion.txt ]; then
     touch currentVersion.txt
 fi
@@ -42,7 +44,7 @@ do
     # Get the version number from the file name
     version=$(echo $file | awk -F. '{print $1}' | awk -Fv '{print $2}')
 
-    # If the version number is less than the current version, skip it
+    # If the version number is less than or equal to the current version, skip it
     if [ $version -le $currentVersion ]; then
         continue
     fi
@@ -51,7 +53,7 @@ do
 
     # Create the flags for the MySQL command if they exist
     if [ ! -z "$username" ]; then
-        usernameFlag="-u $username"
+        usernameFlag="-u$username"
     fi
 
     if [ ! -z "$password" ]; then
@@ -62,6 +64,13 @@ do
         ipFlag="-h $ip"
     fi
     
+    # Check if the first line in the script contains development only and check if the development only flag was passed
+    firstLine=$(head -n 1 scripts/$file)
+
+    if [[ $firstLine == *"--development-only"* ]] && [ -z $developmentOnly ]; then
+        >&2 echo "Skipping $file, version $version"
+        continue
+    fi
 
     # Run the MySQL script
     mysql $ipFlag $usernameFlag $passwordFlag < scripts/$file
