@@ -23,7 +23,7 @@ To install the Easy Migrate Tool, follow these steps:
 
 2. Navigate to the project directory.
 
-3.Run the build.sh script using the following command:
+3. Run the build.sh script using the following command:
 ```bash
 bash ./build.sh
 ```
