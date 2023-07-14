@@ -67,7 +67,7 @@ do
     # Check if the first line in the script contains development only and check if the development only flag was passed
     firstLine=$(head -n 1 scripts/$file)
 
-    if [[ $firstLine == *"--development-only"* ]] && [ -z $developmentOnly ]; then
+    if [[ $firstLine == *"-- development-only"* ]] && [ -z $developmentOnly ]; then
         >&2 echo "Skipping $file, version $version"
         continue
     fi

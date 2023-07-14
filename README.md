@@ -47,7 +47,7 @@ The tool supports the following flags:
 - `-u` or `--username`: The MySQL username.
 - `-p` or `--password`: The MySQL password.
 - `-h` or `--ip`: The MySQL server IP address.
-- `-d` or `--development-only`: Optional flag to enable development-only mode. When this flag is provided, any script containing the `--development-only` comment in its first line will be executed during the migration process.
+- `-d` or `--development-only`: Optional flag to enable development-only mode. When this flag is provided, any script containing the `-- development-only` comment in its first line will be executed during the migration process.
 
 
 ## Scripts Directory
@@ -65,12 +65,12 @@ The Easy Migrate Tool stores the hashes of all scripts in a file called `hashes.
 After each successful migration, the current version is stored in a file called `currentVersion.txt`.
 
 ## Development-only Mode
-The development-only mode allows you to execute specific scripts during the migration process that are intended for development purposes. By using the `-d` flag, any script that includes the `--development-only` comment in its first line will be executed. In addition, scripts without that flag will also be executed. This can be useful when you have scripts that contain development-specific changes or data and should only be executed in a development environment.
+The development-only mode allows you to execute specific scripts during the migration process that are intended for development purposes. By using the `-d` flag, any script that includes the `-- development-only` comment in its first line will be executed. In addition, scripts without that flag will also be executed. This can be useful when you have scripts that contain development-specific changes or data and should only be executed in a development environment.
 
 To utilize the development-only mode, follow these steps:
 
 Ensure that the `-d` flag is included when running the easy-migrate command.
-Add the `--development-only` comment in the first line of any script that should be executed in development-only mode.
+Add the `-- development-only` comment in the first line of any script that should be executed in development-only mode.
 Example script (v3.sql) with the --development-only comment:
 
 ```sql
