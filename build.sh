@@ -37,6 +37,34 @@ rm src/*.fix
 rm -rf package
 
 # Rename the package with the version number and architecture
-mv package.deb easy-migrate_${version}_all.deb
+mv package.deb ./docker/easy-migrate_${version}_all.deb
+
+# Build the docker image superlazer/easy-migrate-mysql with the current version
+cd docker
+docker build -t superlazer/easy-migrate-mysql:${version} .
+
+# Check if the push docker flag is set
+if [ "$1" == "--push" ]; then
+  echo "Pushing docker image to docker hub..."
+
+  # Push the docker image to docker hub
+  docker push superlazer/easy-migrate-mysql:${version}
+
+  # Push the docker image to docker hub with the latest tag
+  docker tag superlazer/easy-migrate-mysql:${version} superlazer/easy-migrate-mysql:latest
+  docker push superlazer/easy-migrate-mysql:latest
+
+else
+  echo "Skipping docker push..."
+fi
+
+# Remove the docker image
+docker rmi superlazer/easy-migrate-mysql:${version}
+
+# Move the package back to the root directory
+mv easy-migrate_${version}_all.deb ../easy-migrate_${version}_all.deb
+
+cd ..
+
 
 exit 0
