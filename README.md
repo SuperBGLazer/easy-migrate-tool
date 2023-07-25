@@ -82,6 +82,51 @@ ALTER TABLE my_table ADD COLUMN new_column INT;
 ```
 Now you can use the -d flag to enable the development-only mode and execute specific scripts during the migration process in a development environment.
 
+## Using Easy Migrate Tool with Docker
+
+### Prerequisites
+Before using this Docker Compose file, ensure that you have Docker and Docker Compose installed on your system. You can download Docker from the official website: https://www.docker.com/get-started
+
+### Docker Compose Configuration
+
+```yaml
+version: '3'
+
+services:
+  db:
+    image: superlazer/easy-migrate-mysql:latest
+    restart: always
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./SQL/:/SQL/
+
+    ports:
+      - "3306:3306"
+
+volumes:
+  db-data:
+
+```
+
+### Usage
+To use this Docker Compose file, follow these steps:
+
+1. Create a new directory on your system.
+
+2. Copy the provided `docker-compose.yml` content into a file named `docker-compose.yml` in the newly created directory.
+
+3. Open a terminal or command prompt, navigate to the directory where the `docker-compose.yml` file is located.
+
+4. Run the following command to start the MySQL server:
+
+```bash
+docker-compose up
+```
+
+5. Connect to the MySQL server running on `localhost:3306`.
+
+6. To stop the server press `CTRL + C`
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
