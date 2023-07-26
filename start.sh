@@ -11,6 +11,8 @@ do
 done
 echo "Database is up and running!"
 
+ls
+
 echo "Executing easy-migrate..."
 easy-migrate -u root -p root -d
 
