@@ -125,7 +125,7 @@ docker-compose up
 
 5. Connect to the MySQL server running on `localhost:3306`.
 
-6. To stop the server press `CTRL + C`
+6. To stop the server press `CTRL + C` to stop the server.
 
 ## License
 
