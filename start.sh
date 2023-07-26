@@ -1,10 +1,10 @@
 #!/bin/bash
 
 echo "Starting MySQL in the background..."
-mysqld --user=root &
+mysqld &
 
 echo "Waiting for database connection..."
-until nc -z -v -w30 "127.0.0.1" "3306"
+until mysql -e "SELECT 1;" &>/dev/null
 do
   # wait for 5 seconds before checking again
   sleep 5

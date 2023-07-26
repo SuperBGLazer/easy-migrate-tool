@@ -1,7 +1,7 @@
 #!/bin/bash
 
 description="Easy Migrate allows you to easily run and orginize your .sql scripts"
-version="0.0.1"
+version="1.0.0"
 maintainer="Breyon Gunn"
 
 # Get the architecture of the system
@@ -33,9 +33,6 @@ chmod +x packages/DEBIAN/control
 dpkg-deb --build package
 
 
-rm src/*.fix
-rm -rf package
-
 # Rename the package with the version number and architecture
 mv package.deb ./easy-migrate_${version}_all.deb
 
@@ -60,6 +57,7 @@ fi
 # Remove the docker image
 docker rmi superlazer/easy-migrate-mysql:${version}
 
-
+rm src/*.fix
+rm -rf package
 
 exit 0
