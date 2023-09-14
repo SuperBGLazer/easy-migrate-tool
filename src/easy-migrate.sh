@@ -28,7 +28,7 @@ if [ ! -f currentVersion.txt ]; then
 fi
 
 # List all the files in the scripts directory and sort them
-files=$(ls scripts | sort)
+files=$(ls scripts | sort -V)
 
 # Get the current version from currentVersion.txt
 currentVersion=$(cat currentVersion.txt)
